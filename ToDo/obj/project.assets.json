@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\johan\\Skrivbord\\Repositories\\ToDo\\ToDo.csproj",
+      "projectUniqueName": "C:\\Users\\johan\\Skrivbord\\Repositories\\ToDo\\ToDo\\ToDo.csproj",
       "projectName": "ToDo",
-      "projectPath": "C:\\Users\\johan\\Skrivbord\\Repositories\\ToDo\\ToDo.csproj",
+      "projectPath": "C:\\Users\\johan\\Skrivbord\\Repositories\\ToDo\\ToDo\\ToDo.csproj",
       "packagesPath": "C:\\Users\\johan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\johan\\Skrivbord\\Repositories\\ToDo\\obj\\",
+      "outputPath": "C:\\Users\\johan\\Skrivbord\\Repositories\\ToDo\\ToDo\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

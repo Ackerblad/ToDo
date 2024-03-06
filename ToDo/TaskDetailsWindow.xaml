@@ -1,0 +1,94 @@
+﻿<Window x:Class="ToDo.TaskDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ToDo"
+        mc:Ignorable="d"
+        Title="ToDo" Height="600" Width="400" WindowStartupLocation="CenterScreen" Background="AliceBlue" ResizeMode="NoResize">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Title" FontSize="14" FontWeight="DemiBold" Foreground="DodgerBlue" VerticalAlignment="Center" Margin="5"/>
+            <TextBox x:Name="TitleTextBox" Grid.Column="1" Width="200" Height="25" FontSize="13" VerticalContentAlignment="Center" BorderBrush="LightSkyBlue" BorderThickness="2" Margin="0,5,50,5"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Creator" FontSize="14" FontWeight="DemiBold" Foreground="DodgerBlue" VerticalAlignment="Center" Margin="5"/>
+            <TextBox x:Name="CreatorTextBox" Grid.Column="1" Width="200" Height="25" FontSize="13" VerticalContentAlignment="Center" BorderBrush="LightSkyBlue" BorderThickness="2" Margin="0,5,50,5"/>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Priority" FontSize="14" FontWeight="DemiBold" Foreground="DodgerBlue" VerticalAlignment="Center" Margin="5"/>
+            <ComboBox x:Name="PriorityComboBox" Grid.Column="1" Width="200" Height="25" FontSize="13" VerticalContentAlignment="Center" Margin="0,5,50,5">
+                <ComboBoxItem Content="High"/>
+                <ComboBoxItem Content="Medium"/>
+                <ComboBoxItem Content="Low"/>
+            </ComboBox>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Category" FontSize="14" FontWeight="DemiBold" Foreground="DodgerBlue" VerticalAlignment="Center" Margin="5"/>
+            <ComboBox x:Name="CategoryComboBox" Grid.Column="1" Width="200" Height="25" FontSize="13" VerticalContentAlignment="Center" Margin="0,5,50,5">
+                <ComboBoxItem Content="Personal"/>
+                <ComboBoxItem Content="Work"/>
+                <ComboBoxItem Content="School"/>
+            </ComboBox>
+        </Grid>
+
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Due Date" FontSize="14" FontWeight="DemiBold" Foreground="DodgerBlue" VerticalAlignment="Center" Margin="5"/>
+            <DatePicker x:Name="DueDatePicker" Grid.Column="1" Width="200" Height="25" FontSize="13" VerticalContentAlignment="Center" Margin="0,5,50,5"/>
+        </Grid>
+
+        <StackPanel Grid.Row="5" Orientation="Vertical" Height="300" Margin="5">
+            <TextBlock Text="Description" FontSize="14" FontWeight="DemiBold" Foreground="DodgerBlue"/>
+            <TextBox x:Name="DescriptionTextBox" FontSize="13" Background="White" BorderBrush="LightSkyBlue" BorderThickness="2" Margin="0,5" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Height="270"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+            <Button x:Name="SaveButton" Click="SaveButton_Click" FontWeight="DemiBold" Margin="5">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border x:Name="saveButtonBorder" Height="30" Width="70" VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="15" Background="LightGreen" BorderBrush="LightSkyBlue" BorderThickness="2">
+                            <ContentPresenter Content="Save" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Foreground>
+                    <SolidColorBrush Color="SeaGreen">
+                    </SolidColorBrush>
+                </Button.Foreground>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

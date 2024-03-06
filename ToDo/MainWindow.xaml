@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDo"
         mc:Ignorable="d"
-        Title="ToDo" Height="600" Width="500" WindowStartupLocation="CenterScreen" Background="AliceBlue" ResizeMode="NoResize">
+        Title="ToDo" Height="600" Width="800" WindowStartupLocation="CenterScreen" Background="AliceBlue" ResizeMode="NoResize">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -15,9 +15,9 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
-            <TextBox x:Name="TaskDescription" Width="200" FontSize="13" VerticalContentAlignment="Center" Background="White" BorderBrush="LightSkyBlue" BorderThickness="2"/>
+            <TextBox x:Name="TaskDescription" Width="200" Height="25" FontSize="13" VerticalContentAlignment="Center" Background="White" BorderBrush="LightSkyBlue" BorderThickness="2"/>
             
-            <ComboBox x:Name="PrioritySelector" Width="80" FontWeight="DemiBold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="10,0,0,0">
+            <ComboBox x:Name="PrioritySelector" Width="80" Height="25" FontSize="13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="10,0,0,0">
                 <ComboBoxItem Content="High"/>
                 <ComboBoxItem Content="Medium"/>
                 <ComboBoxItem Content="Low"/>
@@ -37,29 +37,34 @@
                 </Button.Foreground>
             </Button>
         </StackPanel>
+        
 
         <ListView x:Name="TaskList" Grid.Row="2" Background="White" BorderBrush="LightSkyBlue" BorderThickness="2">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>   
-                        
-                        <GridViewColumn Width="40">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <CheckBox IsChecked="{Binding IsDone}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-
-                        <GridViewColumn Width="120">
+                        <GridViewColumn Width="60">
                             <GridViewColumn.Header>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Description" FontSize="14" FontWeight="DemiBold" VerticalAlignment="Center" Foreground="DodgerBlue"/>
+                                    <TextBlock Text="Status" FontSize="14" FontWeight="DemiBold" VerticalAlignment="Center" Foreground="DodgerBlue"/>
                                 </StackPanel>
                             </GridViewColumn.Header>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Description}"/>
+                                    <CheckBox IsChecked="{Binding IsDone}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="150">
+                            <GridViewColumn.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Title" FontSize="14" FontWeight="DemiBold" VerticalAlignment="Center" Foreground="DodgerBlue"/>
+                                </StackPanel>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Title}" FontSize="13"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -76,7 +81,7 @@
                             </GridViewColumn.Header>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Description}"/>
+                                    <TextBlock Text="{Binding Priority}" FontSize="13"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -93,15 +98,70 @@
                             </GridViewColumn.Header>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding CreatedDate, StringFormat=\{0:dd/MM/yyyy\}}"/>
+                                    <TextBlock Text="{Binding CreatedDate, StringFormat=\{0:yyyy/MM/dd\}}" FontSize="13"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <GridViewColumn Width="120">
+                        <GridViewColumn Width="100">
+                            <GridViewColumn.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Due Date" FontSize="14" FontWeight="DemiBold" VerticalAlignment="Center" Foreground="DodgerBlue"/>
+                                    <StackPanel Orientation="Vertical">
+                                        <Button x:Name="DueDateUpButton" Content="▲" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
+                                        <Button x:Name="DueDateDownButton" Content="▼" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </GridViewColumn.Header>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button x:Name="DeleteButton"  FontWeight="DemiBold">
+                                    <TextBlock Text="{Binding DueDate, StringFormat=\{0:yyyy/MM/dd\}}" FontSize="13"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="100">
+                            <GridViewColumn.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Category" FontSize="14" FontWeight="DemiBold" VerticalAlignment="Center" Foreground="DodgerBlue"/>
+                                    <StackPanel Orientation="Vertical">
+                                        <Button x:Name="CategoryUpButton" Content="▲" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
+                                        <Button x:Name="CategoryDownButton" Content="▼" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Category}" FontSize="13"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="70">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button x:Name="DetailsButton" Click="DetailsButton_Click" FontWeight="DemiBold">
+                                        <Button.Template>
+                                            <ControlTemplate>
+                                                <Border x:Name="detailsButtonBorder" Height="30" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="15" Background="DodgerBlue" BorderBrush="LightSkyBlue" BorderThickness="2">
+                                                    <ContentPresenter Content="Details" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                        <Button.Foreground>
+                                            <SolidColorBrush Color="FloralWhite">
+                                            </SolidColorBrush>
+                                        </Button.Foreground>
+                                    </Button>
+
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="70">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button x:Name="DeleteButton" Click="DeleteButton_Click" FontWeight="DemiBold">
                                         <Button.Template>
                                             <ControlTemplate>
                                                 <Border x:Name="deleteButtonBorder" Height="30" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="15" Background="LightPink" BorderBrush="LightSkyBlue" BorderThickness="2">

@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Collections.ObjectModel;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -22,6 +23,16 @@ namespace ToDo
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+          
+        }
+
+        private void DetailsButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
