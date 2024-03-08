@@ -34,7 +34,7 @@ namespace ToDo
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-
+           
         }
     }
 }

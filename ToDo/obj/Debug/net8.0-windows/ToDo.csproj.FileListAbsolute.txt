@@ -41,3 +41,6 @@ C:\Users\johan\Skrivbord\Repositories\ToDo\ToDo\obj\Debug\net8.0-windows\refint\
 C:\Users\johan\Skrivbord\Repositories\ToDo\ToDo\obj\Debug\net8.0-windows\ToDo.pdb
 C:\Users\johan\Skrivbord\Repositories\ToDo\ToDo\obj\Debug\net8.0-windows\ToDo.genruntimeconfig.cache
 C:\Users\johan\Skrivbord\Repositories\ToDo\ToDo\obj\Debug\net8.0-windows\ref\ToDo.dll
+C:\Users\johan\Skrivbord\Repositories\ToDo\ToDo\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
+C:\Users\johan\Skrivbord\Repositories\ToDo\ToDo\obj\Debug\net8.0-windows\ToDo.csproj.AssemblyReference.cache
+C:\Users\johan\Skrivbord\Repositories\ToDo\ToDo\obj\Debug\net8.0-windows\ToDo.csproj.CopyComplete

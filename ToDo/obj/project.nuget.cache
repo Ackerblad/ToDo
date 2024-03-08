@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ZZiv2ygpfPegQttVfEVceuVxTAzILS5IBg0/UFXGpqdqRVQTrrSbo7y8i3lq7OrXtHQff2zQHPfOcmYshV8o7A==",
+  "dgSpecHash": "piV8pRQZFOlYnbFgqJJrLM1al/iJEKgQEjW9u+TeO3NKbzBLSJJvgoTtzE1IHRISki4dfUtXeLf1KwhqfqqIFg==",
   "success": true,
   "projectFilePath": "C:\\Users\\johan\\Skrivbord\\Repositories\\ToDo\\ToDo\\ToDo.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\johan\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }
