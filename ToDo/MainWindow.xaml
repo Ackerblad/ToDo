@@ -22,7 +22,7 @@
                 <ComboBoxItem Content="Medium"/>
                 <ComboBoxItem Content="Low"/>
             </ComboBox>
-            
+
             <Button x:Name="AddButton" Click="AddButton_Click" FontWeight="DemiBold" Margin="10,0,0,0">
                 <Button.Template>
                     <ControlTemplate>
@@ -36,9 +36,38 @@
                     </SolidColorBrush>
                 </Button.Foreground>
             </Button>
+
+            <Button x:Name="UndoButton" Click="UndoButton_Click" FontWeight="DemiBold" Margin="10,0,0,0">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border x:Name="undoButtonBorder" Height="30" Width="35" VerticalAlignment="Center" HorizontalAlignment="Left" CornerRadius="15" Background="DodgerBlue" BorderBrush="LightSkyBlue" BorderThickness="2">
+                            <TextBlock Text="&#xE10E;" FontFamily="Segoe MDL2 Assets" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Foreground>
+                    <SolidColorBrush Color="FloralWhite"/>
+                </Button.Foreground>
+            </Button>
+
+            <Button x:Name="RedoButton" Click="RedoButton_Click" FontWeight="DemiBold" Margin="5,0,0,0">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border x:Name="redoButtonBorder" Height="30" Width="35" VerticalAlignment="Center" HorizontalAlignment="Left" CornerRadius="15" Background="DodgerBlue" BorderBrush="LightSkyBlue" BorderThickness="2">
+                            <TextBlock Text="&#xE10E;" FontFamily="Segoe MDL2 Assets" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                                <TextBlock.RenderTransform>
+                                    <ScaleTransform ScaleX="-1"/>
+                                </TextBlock.RenderTransform>
+                            </TextBlock>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Foreground>
+                    <SolidColorBrush Color="FloralWhite"/>
+                </Button.Foreground>
+            </Button>
         </StackPanel>
         
-
         <ListView x:Name="TaskList" Grid.Row="2" Background="White" BorderBrush="LightSkyBlue" BorderThickness="2">
             <ListView.View>
                 <GridView>
