@@ -4,8 +4,8 @@
     {
         ITaskItemBuilder SetTitle(string title);
         ITaskItemBuilder SetCreator(string creator);
-        ITaskItemBuilder SetPriority(string priority);
-        ITaskItemBuilder SetCategory(string category);
+        ITaskItemBuilder SetPriority(TaskEnums.Priority priority);
+        ITaskItemBuilder SetCategory(TaskEnums.Category category);
         ITaskItemBuilder SetCreationDate(DateTime creationDate);
         ITaskItemBuilder SetDueDate(DateTime dueDate);
         ITaskItemBuilder SetDescription(string description);

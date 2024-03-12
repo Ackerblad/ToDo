@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using System.IO;
+using System.Text.Json.Serialization;
 
 namespace ToDo
 {
@@ -21,7 +22,11 @@ namespace ToDo
             }
 
             string json = File.ReadAllText(filePath);
-            return JsonSerializer.Deserialize<List<TaskItem>>(json);
+            var options = new JsonSerializerOptions
+            {
+                Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
+            };
+            return JsonSerializer.Deserialize<List<TaskItem>>(json, options);
         }
 
         public void Add(TaskItem task)
@@ -64,7 +69,11 @@ namespace ToDo
 
         private void SaveTasks()
         {
-            var options = new JsonSerializerOptions { WriteIndented = true };
+            var options = new JsonSerializerOptions 
+            { WriteIndented = true,
+              Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
+                
+            };
             string json = JsonSerializer.Serialize(tasks, options);
             File.WriteAllText(filePath, json);
         }

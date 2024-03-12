@@ -26,15 +26,27 @@ namespace ToDo
         {
             InitializeComponent();
             this.taskItem = taskItem;
+            InitializePrioritySelector();
+            InitializeCategorySelector();
             LoadTask();
+        }
+
+        private void InitializePrioritySelector()
+        {
+            PriorityComboBox.ItemsSource = Enum.GetValues(typeof(TaskEnums.Priority));
+        }
+
+        private void InitializeCategorySelector()
+        {
+            CategoryComboBox.ItemsSource = Enum.GetValues(typeof(TaskEnums.Category));
         }
 
         private void LoadTask()
         {
             TitleTextBox.Text = taskItem.Title;
             CreatorTextBox.Text = taskItem.Creator;
-            PriorityComboBox.SelectedItem = PriorityComboBox.Items.Cast<ComboBoxItem>().FirstOrDefault(item => item.Content.ToString() == taskItem.Priority);
-            CategoryComboBox.SelectedItem = PriorityComboBox.Items.Cast<ComboBoxItem>().FirstOrDefault(item => item.Content.ToString() == taskItem.Category);
+            PriorityComboBox.SelectedItem = taskItem.Priority;
+            CategoryComboBox.SelectedItem = taskItem.Category;
             DueDatePicker.SelectedDate = taskItem.DueDate;
             DescriptionTextBox.Text = taskItem.Description;
         }
@@ -43,8 +55,8 @@ namespace ToDo
         {
             taskItem.Title = TitleTextBox.Text;
             taskItem.Creator = CreatorTextBox.Text;
-            taskItem.Priority = ((ComboBoxItem)PriorityComboBox.SelectedItem)?.Content.ToString();
-            taskItem.Category = ((ComboBoxItem)CategoryComboBox.SelectedItem)?.Content.ToString();
+            taskItem.Priority = (TaskEnums.Priority)PriorityComboBox.SelectedItem;
+            taskItem.Category = (TaskEnums.Category)CategoryComboBox.SelectedItem;
             taskItem.DueDate = DueDatePicker.SelectedDate;
             taskItem.Description = DescriptionTextBox.Text;
 

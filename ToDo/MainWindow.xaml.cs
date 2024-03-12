@@ -19,13 +19,16 @@ namespace ToDo
     {
         private TaskRepository taskRepository = new TaskRepository();
         private CommandManager commandManager = new CommandManager();
+        private TaskSorter taskSorter = new TaskSorter();
         private ObservableCollection<ITaskItem> taskItems = new ObservableCollection<ITaskItem>();
-
+        
         public MainWindow()
         {
             InitializeComponent();
             TaskList.ItemsSource = taskItems;
             LoadTasks();
+            InitializePrioritySelector();
+            InitializeCategorySelector();
 
         }
 
@@ -38,12 +41,23 @@ namespace ToDo
             }
         }
 
+        private void InitializePrioritySelector()
+        {
+            PrioritySelector.ItemsSource = Enum.GetValues(typeof(TaskEnums.Priority));
+        }
+        private void InitializeCategorySelector()
+        {
+            CategorySelector.ItemsSource = Enum.GetValues(typeof(TaskEnums.Category));
+        }
+
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            var priority = PrioritySelector.SelectedItem?.ToString() ?? "Low";
+            var priority = PrioritySelector.SelectedItem != null ? (TaskEnums.Priority)PrioritySelector.SelectedItem : TaskEnums.Priority.Low;
+            var category = CategorySelector.SelectedItem != null ? (TaskEnums.Category)CategorySelector.SelectedItem : TaskEnums.Category.Other;
             var taskItem = new TaskItemBuilder()
                                 .SetTitle(TaskDescription.Text)
                                 .SetPriority(priority)
+                                .SetCategory(category)
                                 .SetCreationDate(DateTime.Now)
                                 .Build();
 

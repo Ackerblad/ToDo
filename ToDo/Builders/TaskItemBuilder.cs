@@ -16,13 +16,13 @@
             return this;
         }
 
-        public ITaskItemBuilder SetPriority(string priority)
+        public ITaskItemBuilder SetPriority(TaskEnums.Priority priority)
         {
             taskItem.Priority = priority;
             return this;
         }
 
-        public ITaskItemBuilder SetCategory(string category)
+        public ITaskItemBuilder SetCategory(TaskEnums.Category category)
         {
             taskItem.Category = category;
             return this;

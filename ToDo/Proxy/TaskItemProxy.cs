@@ -4,17 +4,17 @@
     {
         private readonly ITaskRepository taskRepository;
         private readonly int taskId;
-        private TaskItem _fullTaskItem;
+        private TaskItem fullTaskItem;
 
-        private TaskItem fullTaskItem
+        private TaskItem FullTaskItem
         {
             get
             {
-                if (_fullTaskItem == null)
+                if (fullTaskItem == null)
                 {
-                    _fullTaskItem = taskRepository.Get(taskId) as TaskItem;
+                    fullTaskItem = taskRepository.Get(taskId);
                 }
-                return _fullTaskItem;
+                return fullTaskItem;
             }
         }
 
@@ -24,11 +24,11 @@
             this.taskId = taskId;
         }
 
-        public int Id => fullTaskItem.Id;
-        public string Title => fullTaskItem.Title;
-        public string Priority => fullTaskItem.Priority;
-        public string Category => fullTaskItem.Category;
-        public DateTime CreationDate => fullTaskItem.CreationDate;
-        public DateTime? DueDate => fullTaskItem.DueDate;
+        public int Id => FullTaskItem.Id;
+        public string Title => FullTaskItem.Title;
+        public TaskEnums.Priority Priority => FullTaskItem.Priority;
+        public TaskEnums.Category Category => FullTaskItem.Category;
+        public DateTime CreationDate => FullTaskItem.CreationDate;
+        public DateTime? DueDate => FullTaskItem.DueDate;
     }
 }

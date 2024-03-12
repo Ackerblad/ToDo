@@ -2,27 +2,27 @@
 {
     public class AddTaskCommand : ICommand
     {
-        private readonly ITaskRepository _repository;
-        private readonly TaskItem _taskItem;
-        private int _addedTaskId;
+        private readonly ITaskRepository repository;
+        private readonly TaskItem taskItem;
+        private int addedTaskId;
 
         public AddTaskCommand(ITaskRepository repository, TaskItem taskItem)
         {
-            _repository = repository;
-            _taskItem = taskItem;
+            this.repository = repository;
+            this.taskItem = taskItem;
         }
 
         public void Execute()
         {
-            _repository.Add(_taskItem);
-            _addedTaskId = _taskItem.Id;
+            this.repository.Add(this.taskItem);
+            this.addedTaskId = this.taskItem.Id;
         }
 
         public void Undo()
         {
-            if (_addedTaskId != 0)
+            if (this.addedTaskId != 0)
             {
-                _repository.Delete(_addedTaskId);
+                this.repository.Delete(this.addedTaskId);
             }
         }
     }

@@ -4,8 +4,8 @@
     {
         int Id { get;}
         string Title { get;}
-        string Priority { get;}
-        string Category { get;}
+        TaskEnums.Priority Priority { get;}
+        TaskEnums.Category Category { get;}
         DateTime CreationDate { get;}
         DateTime? DueDate { get;}
     }

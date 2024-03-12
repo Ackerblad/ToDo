@@ -2,31 +2,28 @@
 {
     public class DeleteTaskCommand : ICommand
     {
-        private readonly ITaskRepository _repository;
-        private TaskItem _deletedTask;
-        private int _deletedTaskId;
+        private readonly ITaskRepository repository;
+        private TaskItem deletedTask;
+        private int deletedTaskId;
 
         public DeleteTaskCommand(ITaskRepository repository, int taskId)
         {
-            _repository = repository;
-            _deletedTaskId = taskId;
+            this.repository = repository;
+            this.deletedTaskId = taskId;
         }
 
         public void Execute()
         {
-            _deletedTask = _repository.Get(_deletedTaskId);
-            if (_deletedTask != null)
+            this.deletedTask = this.repository.Get(this.deletedTaskId);
+            if (this.deletedTask != null)
             {
-                _repository.Delete(_deletedTaskId);
+                this.repository.Delete(this.deletedTaskId);
             }
         }
 
         public void Undo()
         {
-            if (_deletedTaskId != null)
-            {
-                _repository.Add(_deletedTask);
-            }
+                this.repository.Add(this.deletedTask);            
         }
     }
 }

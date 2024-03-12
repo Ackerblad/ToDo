@@ -16,12 +16,10 @@
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
             <TextBox x:Name="TaskDescription" Width="200" Height="25" FontSize="13" VerticalContentAlignment="Center" Background="White" BorderBrush="LightSkyBlue" BorderThickness="2"/>
-            
-            <ComboBox x:Name="PrioritySelector" Width="80" Height="25" FontSize="13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="10,0,0,0">
-                <ComboBoxItem Content="High"/>
-                <ComboBoxItem Content="Medium"/>
-                <ComboBoxItem Content="Low"/>
-            </ComboBox>
+
+            <ComboBox x:Name="PrioritySelector" Width="80" Height="25" FontSize="13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="10,0,0,0"/>
+
+            <ComboBox x:Name="CategorySelector" Width="80" Height="25" FontSize="13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="10,0,0,0"/>
 
             <Button x:Name="AddButton" Click="AddButton_Click" FontWeight="DemiBold" Margin="10,0,0,0">
                 <Button.Template>
@@ -103,48 +101,14 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Priority" FontSize="14" FontWeight="DemiBold" VerticalAlignment="Center" Foreground="DodgerBlue"/>
                                     <StackPanel Orientation="Vertical">
-                                        <Button x:Name="PriorityUpButton" Content="▲" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
-                                        <Button x:Name="PriorityDownButton" Content="▼" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
+                                        <Button x:Name="PriorityUpButton" Click="PriorityUpButton_Click" Content="▲" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
+                                        <Button x:Name="PriorityDownButton" Click="PriorityDownButton_Click" Content="▼" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
                                     </StackPanel>
                                 </StackPanel>
                             </GridViewColumn.Header>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Priority}" FontSize="13"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-
-                        <GridViewColumn Width="100">
-                            <GridViewColumn.Header>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Created" FontSize="14" FontWeight="DemiBold" VerticalAlignment="Center" Foreground="DodgerBlue"/>
-                                    <StackPanel Orientation="Vertical">
-                                        <Button x:Name="CreatedUpButton" Content="▲" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
-                                        <Button x:Name="CreatedDownButton" Content="▼" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
-                                    </StackPanel>
-                                </StackPanel>
-                            </GridViewColumn.Header>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding CreatedDate, StringFormat=\{0:yyyy/MM/dd\}}" FontSize="13"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-
-                        <GridViewColumn Width="100">
-                            <GridViewColumn.Header>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Due Date" FontSize="14" FontWeight="DemiBold" VerticalAlignment="Center" Foreground="DodgerBlue"/>
-                                    <StackPanel Orientation="Vertical">
-                                        <Button x:Name="DueDateUpButton" Content="▲" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
-                                        <Button x:Name="DueDateDownButton" Content="▼" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
-                                    </StackPanel>
-                                </StackPanel>
-                            </GridViewColumn.Header>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding DueDate, StringFormat=\{0:yyyy/MM/dd\}}" FontSize="13"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -162,6 +126,40 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Category}" FontSize="13"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="100">
+                            <GridViewColumn.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Created" FontSize="14" FontWeight="DemiBold" VerticalAlignment="Center" Foreground="DodgerBlue"/>
+                                    <StackPanel Orientation="Vertical">
+                                        <Button x:Name="CreatedUpButton" Content="▲" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
+                                        <Button x:Name="CreatedDownButton" Content="▼" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding CreationDate, StringFormat=\{0:yyyy/MM/dd\}}" FontSize="13"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="100">
+                            <GridViewColumn.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Due Date" FontSize="14" FontWeight="DemiBold" VerticalAlignment="Center" Foreground="DodgerBlue"/>
+                                    <StackPanel Orientation="Vertical">
+                                        <Button x:Name="DueDateUpButton" Content="▲" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
+                                        <Button x:Name="DueDateDownButton" Content="▼" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding DueDate, StringFormat=\{0:yyyy/MM/dd\}}" FontSize="13"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

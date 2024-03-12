@@ -41,11 +41,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="Priority" FontSize="14" FontWeight="DemiBold" Foreground="DodgerBlue" VerticalAlignment="Center" Margin="5"/>
-            <ComboBox x:Name="PriorityComboBox" Grid.Column="1" Width="200" Height="25" FontSize="13" VerticalContentAlignment="Center" Margin="0,5,50,5">
-                <ComboBoxItem Content="High"/>
-                <ComboBoxItem Content="Medium"/>
-                <ComboBoxItem Content="Low"/>
-            </ComboBox>
+            <ComboBox x:Name="PriorityComboBox" Grid.Column="1" Width="200" Height="25" FontSize="13" VerticalContentAlignment="Center" Margin="0,5,50,5"/>
         </Grid>
 
         <Grid Grid.Row="3">
@@ -54,11 +50,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="Category" FontSize="14" FontWeight="DemiBold" Foreground="DodgerBlue" VerticalAlignment="Center" Margin="5"/>
-            <ComboBox x:Name="CategoryComboBox" Grid.Column="1" Width="200" Height="25" FontSize="13" VerticalContentAlignment="Center" Margin="0,5,50,5">
-                <ComboBoxItem Content="Personal"/>
-                <ComboBoxItem Content="Work"/>
-                <ComboBoxItem Content="School"/>
-            </ComboBox>
+            <ComboBox x:Name="CategoryComboBox" Grid.Column="1" Width="200" Height="25" FontSize="13" VerticalContentAlignment="Center" Margin="0,5,50,5"/>
         </Grid>
 
         <Grid Grid.Row="4">
