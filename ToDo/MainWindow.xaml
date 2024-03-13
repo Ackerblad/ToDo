@@ -14,8 +14,24 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
+        <DockPanel Grid.Row="0" Margin="10,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Button x:Name="InstructionButton" DockPanel.Dock="Left"  Click="InstructionButton_Click" FontWeight="DemiBold">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border x:Name="instructionButtonBorder" Height="25" Width="25" VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="15" Background="DodgerBlue" BorderBrush="LightSkyBlue" BorderThickness="2">
+                            <TextBlock Text="&#xE11B;" FontFamily="Segoe MDL2 Assets" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Foreground>
+                    <SolidColorBrush Color="FloralWhite"/>
+                </Button.Foreground>
+            </Button>
+        </DockPanel>
+
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
-            <TextBox x:Name="TaskDescription" Width="200" Height="25" FontSize="13" VerticalContentAlignment="Center" Background="White" BorderBrush="LightSkyBlue" BorderThickness="2"/>
+
+            <TextBox x:Name="TaskDescription" Text="Enter Title" GotFocus="TaskDescription_GotFocus" LostFocus="TaskDescription_LostFocus" Width="200" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontStyle="Italic" FontSize="13" Foreground="LightSlateGray" Background="White" BorderBrush="LightSkyBlue" BorderThickness="2"/>
 
             <ComboBox x:Name="PrioritySelector" Width="80" Height="25" FontSize="13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="10,0,0,0"/>
 
@@ -70,23 +86,15 @@
             <ListView.View>
                 <GridView>
                     <GridView.Columns>   
-                        <GridViewColumn Width="60">
-                            <GridViewColumn.Header>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Status" FontSize="14" FontWeight="DemiBold" VerticalAlignment="Center" Foreground="DodgerBlue"/>
-                                </StackPanel>
-                            </GridViewColumn.Header>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <CheckBox IsChecked="{Binding IsDone}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-
-                        <GridViewColumn Width="150">
+                        
+                        <GridViewColumn Width="200">
                             <GridViewColumn.Header>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Title" FontSize="14" FontWeight="DemiBold" VerticalAlignment="Center" Foreground="DodgerBlue"/>
+                                    <StackPanel Orientation="Vertical">
+                                        <Button x:Name="TitleUpButton" Click="TitleUpButton_Click" Content="▲" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
+                                        <Button x:Name="TitleDownButton" Click="TitleDownButton_Click" Content="▼" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
+                                    </StackPanel>
                                 </StackPanel>
                             </GridViewColumn.Header>
                             <GridViewColumn.CellTemplate>
@@ -118,8 +126,8 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Category" FontSize="14" FontWeight="DemiBold" VerticalAlignment="Center" Foreground="DodgerBlue"/>
                                     <StackPanel Orientation="Vertical">
-                                        <Button x:Name="CategoryUpButton" Content="▲" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
-                                        <Button x:Name="CategoryDownButton" Content="▼" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
+                                        <Button x:Name="CategoryUpButton" Click="CategoryUpButton_Click" Content="▲" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
+                                        <Button x:Name="CategoryDownButton" Click="CategoryDownButton_Click" Content="▼" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
                                     </StackPanel>
                                 </StackPanel>
                             </GridViewColumn.Header>
@@ -135,8 +143,8 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Created" FontSize="14" FontWeight="DemiBold" VerticalAlignment="Center" Foreground="DodgerBlue"/>
                                     <StackPanel Orientation="Vertical">
-                                        <Button x:Name="CreatedUpButton" Content="▲" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
-                                        <Button x:Name="CreatedDownButton" Content="▼" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
+                                        <Button x:Name="CreatedUpButton" Click="CreatedUpButton_Click" Content="▲" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
+                                        <Button x:Name="CreatedDownButton" Click="CreatedDownButton_Click" Content="▼" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
                                     </StackPanel>
                                 </StackPanel>
                             </GridViewColumn.Header>
@@ -152,8 +160,8 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Due Date" FontSize="14" FontWeight="DemiBold" VerticalAlignment="Center" Foreground="DodgerBlue"/>
                                     <StackPanel Orientation="Vertical">
-                                        <Button x:Name="DueDateUpButton" Content="▲" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
-                                        <Button x:Name="DueDateDownButton" Content="▼" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
+                                        <Button x:Name="DueDateUpButton" Click="DueDateUpButton_Click" Content="▲" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
+                                        <Button x:Name="DueDateDownButton" Click="DueDateDownButton_Click" Content="▼" FontSize="8" Margin="10,0" Foreground="DodgerBlue" Background="AliceBlue"/>
                                     </StackPanel>
                                 </StackPanel>
                             </GridViewColumn.Header>

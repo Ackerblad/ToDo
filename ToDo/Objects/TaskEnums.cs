@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ToDo
+﻿namespace ToDo
 {
     public static class TaskEnums
     {
+        //The priorities have values that are used for sorting
         public enum Priority
         {
             Low = 1,
@@ -20,7 +15,7 @@ namespace ToDo
             Personal,
             Work,
             School,
-            Other
+            Other 
         }
     }
 }

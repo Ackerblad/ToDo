@@ -2,6 +2,7 @@
 {
     public class InsertionSortStrategy : ISortingStrategy
     {
+        //Sorts tasks using InsertionSort based on the given comparison criteria
         public void Sort(List<ITaskItem> tasks, Func<ITaskItem, ITaskItem, int> comparison)
         {
             for (int i = 1; i < tasks.Count; i++)

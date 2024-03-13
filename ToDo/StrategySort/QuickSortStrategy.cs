@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ToDo
+﻿namespace ToDo
 {
     public class QuickSortStrategy : ISortingStrategy
     {
+        //Sorts tasks using QuickSort based on the given comparison criteria
         public void Sort(List<ITaskItem> tasks, Func<ITaskItem, ITaskItem, int> comparison)
         {
             QuickSort(tasks, 0, tasks.Count - 1, comparison);
         }
 
+        //Repeatedly sorts a portion of the list
         private void QuickSort(List<ITaskItem> tasks, int low, int high, Func<ITaskItem, ITaskItem, int> comparison)
         {
             if (low < high)
@@ -24,6 +19,7 @@ namespace ToDo
             }
         }
 
+        //Partitions the tasklist around a pivot
         private int Partition(List<ITaskItem> tasks, int low, int high, Func<ITaskItem, ITaskItem, int> comparison)
         {
             ITaskItem pivot = tasks[high];
@@ -43,6 +39,7 @@ namespace ToDo
             return i + 1;
         }
 
+        //Swaps two elements in the tasklist
         private void Swap(List<ITaskItem> tasks, int i, int j)
         {
             ITaskItem temp = tasks[i];

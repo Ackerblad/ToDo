@@ -4,19 +4,7 @@
     {
         private readonly ITaskRepository taskRepository;
         private readonly int taskId;
-        private TaskItem fullTaskItem;
-
-        private TaskItem FullTaskItem
-        {
-            get
-            {
-                if (fullTaskItem == null)
-                {
-                    fullTaskItem = taskRepository.Get(taskId);
-                }
-                return fullTaskItem;
-            }
-        }
+        private TaskItem cachedTaskItem;
 
         public TaskItemProxy(ITaskRepository taskRepository, int taskId)
         {
@@ -24,6 +12,20 @@
             this.taskId = taskId;
         }
 
+        // Lazily loads and caches the TaskItem details from the repository when needed
+        private TaskItem FullTaskItem
+        {
+            get
+            {
+                if (cachedTaskItem == null)
+                {
+                    cachedTaskItem = taskRepository.Get(taskId);
+                }
+                return cachedTaskItem;
+            }
+        }
+
+        //Properties that lazily load the TaskItem
         public int Id => FullTaskItem.Id;
         public string Title => FullTaskItem.Title;
         public TaskEnums.Priority Priority => FullTaskItem.Priority;

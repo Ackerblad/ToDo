@@ -109,7 +109,7 @@ namespace ToDo {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ToDo;V1.0.0.0;component/taskdetailswindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/ToDo;component/taskdetailswindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\TaskDetailsWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

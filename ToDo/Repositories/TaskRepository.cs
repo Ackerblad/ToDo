@@ -1,5 +1,5 @@
-﻿using System.Text.Json;
-using System.IO;
+﻿using System.IO;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace ToDo
@@ -11,71 +11,132 @@ namespace ToDo
 
         public TaskRepository()
         {
-            tasks = LoadTasks() ?? new List<TaskItem>();
+            tasks = LoadTasks();
         }
 
         private List<TaskItem> LoadTasks()
         {
-            if (!File.Exists(filePath))
+            try
             {
+                if (!File.Exists(filePath))
+                {
+                    return new List<TaskItem>();
+                }
+
+                string json = File.ReadAllText(filePath);
+                var options = new JsonSerializerOptions
+                {
+                    Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
+                };
+                return JsonSerializer.Deserialize<List<TaskItem>>(json, options);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading tasks: {ex.Message}");
                 return new List<TaskItem>();
             }
-
-            string json = File.ReadAllText(filePath);
-            var options = new JsonSerializerOptions
-            {
-                Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
-            };
-            return JsonSerializer.Deserialize<List<TaskItem>>(json, options);
         }
 
+        //Adds a new task with a unique ID 
         public void Add(TaskItem task)
         {
-            int nextId = tasks.Any() ? tasks.Max(t => t.Id) + 1 : 1;
-            task.Id = nextId;
-            tasks.Add(task);
-            SaveTasks();
+            try
+            {
+                if (task != null)
+                {
+                    int nextId = tasks.Any() ? tasks.Max(t => t.Id) + 1 : 1;
+                    task.Id = nextId;
+                    tasks.Add(task);
+                    SaveTasks();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error adding task: {ex.Message}");
+            }
         }
 
+        //Updates an existing task
         public void Update(TaskItem task)
         {
-            var index = tasks.FindIndex(t => t.Id == task.Id);
-            if (index != -1)
+            try
             {
-                tasks[index] = task;
-                SaveTasks();
+                var index = tasks.FindIndex(t => t.Id == task.Id);
+                if (index != -1)
+                {
+                    tasks[index] = task;
+                    SaveTasks();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error updating task: {ex.Message}");
             }
         }
 
+        //Deletes a task by its ID
         public void Delete(int id)
         {
-            var task = tasks.FirstOrDefault(t => t.Id == id);
-            if (task != null)
+            try
             {
-                tasks.Remove(task);
-                SaveTasks();
+                var task = tasks.FirstOrDefault(t => t.Id == id);
+                if (task != null)
+                {
+                    tasks.Remove(task);
+                    SaveTasks();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting task: {ex.Message}");
             }
         }
 
+        // Retrieves a single task by its ID
         public TaskItem Get(int id)
         {
-            return tasks.FirstOrDefault(task => task.Id == id);
+            try
+            {
+                return tasks.FirstOrDefault(task => task.Id == id);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error retrieving task: {ex.Message}");
+                return null;
+            }
         }
 
+        // Retrieves all tasks
         public IEnumerable<TaskItem> GetAll()
         {
-            return tasks;
+            try
+            {
+                return tasks;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error retrieving all tasks: {ex.Message}");
+                return new List<TaskItem>();
+            }
         }
 
         private void SaveTasks()
         {
-            var options = new JsonSerializerOptions 
-            { WriteIndented = true,
-              Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
-                
-            };
-            string json = JsonSerializer.Serialize(tasks, options);
-            File.WriteAllText(filePath, json);
+            try
+            {
+                var options = new JsonSerializerOptions
+                {
+                    WriteIndented = true,
+                    Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
+
+                };
+                string json = JsonSerializer.Serialize(tasks, options);
+                File.WriteAllText(filePath, json);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error saving tasks: {ex.Message}");
+            }
         }
     }
 }
